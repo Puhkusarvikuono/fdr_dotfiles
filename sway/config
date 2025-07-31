@@ -1,0 +1,253 @@
+# Sway configuration file
+#
+# For a complete reference, see `man 5 sway`.
+
+# Include colors from pywal
+#include "$HOME/.cache/wal/colors-sway"
+
+# -----------------------------------------------------------------------------
+# Variables
+# -----------------------------------------------------------------------------
+# Set the modifier key. Mod4 is typically the Super/Windows key.
+set $mod Mod4
+
+# Home row direction keys (Vim-style)
+set $left h
+set $down j
+set $up k
+set $right l
+
+# Application shortcuts
+set $term kitty
+set $menu wmenu-run
+set $browser firefox
+
+# -----------------------------------------------------------------------------
+# Autostart
+# -----------------------------------------------------------------------------
+# Programs to start automatically on sway startup.
+# `exec_always` ensures they are restarted if they crash.
+#exec_always dunst                                 # Notification daemon
+#exec_always blueman-applet                        # Bluetooth applet
+#exec_always hypridle                              # Idle daemon
+#exec_always spotify_player -d                     # Spotify daemon
+#exec_always /usr/lib/polkit-kde-authentication-agent-1 # Polkit agent
+
+# Wallpaper
+#exec hyprpaper
+set $rofi_cmd rofi \
+        -terminal '$term'
+# Shows a combined list of the applications with desktop files and
+# executables from PATH.
+# TODO: add window with the next release of rofi-wayland
+set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
+
+### Output configuration
+#
+# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
+# Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
+output * bg /usr/share/backgrounds/default.jxl fill
+#
+# -----------------------------------------------------------------------------
+# Window & Layout Settings
+# -----------------------------------------------------------------------------
+# Window appearance
+default_border pixel 3
+default_floating_border pixel 3
+gaps inner 5
+gaps outer 0
+
+# Smart borders (only show when needed)
+smart_borders on
+
+# Window theming
+# target                 title     bg          text       indicator  border
+#client.focused           $color0   $background $foreground $color7   $background
+#client.focused_inactive  $color8   $background $foreground $color7   $color8
+#client.unfocused         $color8   $background $foreground $color7   $color8
+#client.urgent            $color1   $background $color2     $color8   $color1
+#client.placeholder       $color8   $background $foreground $color8   $color8
+#client.background        $background
+
+# Focus on new windows
+focus new
+# Center mouse on new window
+mouse_warping container
+
+# -----------------------------------------------------------------------------
+# Idle & Power Management
+# -----------------------------------------------------------------------------
+# This is handled by `hypridle`. See ~/.config/hypr/hypridle.conf
+
+# -----------------------------------------------------------------------------
+# Input Devices
+# -----------------------------------------------------------------------------
+input type:touchpad {
+    dwt enabled          # Disable while typing
+    tap enabled          # Tap to click
+    natural_scroll disabled
+    middle_emulation enabled
+}
+
+input type:keyboard {
+    xkb_layout "fi"
+}
+
+# -----------------------------------------------------------------------------
+# Key Bindings
+# -----------------------------------------------------------------------------
+
+# --- Basic Operations
+# Start a terminal
+bindsym $mod+x exec $term
+
+# Kill focused window
+bindsym $mod+q kill
+
+# Application launcher
+#bindsym $mod+d exec $menu
+
+# Reload sway config
+bindsym $mod+Shift+c reload
+
+# Exit sway
+bindsym $mod+Shift+m exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+# --- Application Shortcuts
+bindsym $mod+b exec $browser
+bindsym $mod+Shift+b exec brave --password-store=basic
+#bindsym $mod+Space exec ~/.scripts/spotify_search.sh
+#bindsym $mod+W exec ~/.scripts/wallpaper_changer.sh
+
+# --- System Actions
+# Power menu
+#bindsym $mod+Shift+q exec ~/.scripts/dmenu_sys.sh
+
+# Lock screen and mute audio
+bindsym $mod+Return exec pactl set-sink-mute @DEFAULT_SINK@ 1 && hyprlock
+
+# Screenshots
+#bindsym Print exec hyprshot -m window
+#bindsym shift+Print exec hyprshot -m region
+
+# --- Window and Layout Management
+# Focus movement (Vim-style)
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Focus movement (Arrow keys)
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window (Vim-style)
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Move focused window (Arrow keys)
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Layout style
+bindsym $mod+m splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+e layout toggle split
+
+# Fullscreen
+bindsym $mod+f fullscreen
+
+# Floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Move focus to parent container
+bindsym $mod+a focus parent
+
+# --- Workspace Management
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# --- Scratchpad
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Cycle through scratchpad windows
+bindsym $mod+minus scratchpad show
+
+# --- Resizing
+mode "resize" {
+    # Resize with vim-style keys
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Resize with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# --- Multimedia and Brightness Keys
+# Volume control (PulseAudio)
+bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Player control (Playerctl)
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPause exec playerctl play-pause
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+# Screen brightness
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# -----------------------------------------------------------------------------
+# Status Bar
+# -----------------------------------------------------------------------------
+bar {
+    swaybar_command waybar
+}
+
+# -----------------------------------------------------------------------------
+# Includes
+# -----------------------------------------------------------------------------
+# Include additional config files
+include /etc/sway/config.d/*

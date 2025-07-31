@@ -1,0 +1,39 @@
+# Kitty Configuration
+#
+# This is a simplified configuration file.
+# Unspecified settings will use Kitty's default values.
+# For a full list of options, see the default kitty.conf or run: kitty --config -
+
+# ----------------------------------------------------------------------------
+# Fonts
+# ----------------------------------------------------------------------------
+font_family      Jetbrains Mono Nerd Font
+bold_font        auto
+italic_font      auto
+bold_italic_font auto
+font_size        12.0
+
+
+enable_audio_bell = fals
+enable_audio_bell = falsee
+# ----------------------------------------------------------------------------
+# Scrollback
+# ----------------------------------------------------------------------------
+scrollback_lines 2000
+
+# ----------------------------------------------------------------------------
+# Window Layout & Sizing
+# ----------------------------------------------------------------------------
+remember_window_size  yes
+initial_window_width  640
+initial_window_height 400
+enabled_layouts *
+
+# ----------------------------------------------------------------------------
+# Colors & Theming
+# ----------------------------------------------------------------------------
+# Colors are managed by pywal.
+# The generated color file is included below.
+# The template for this file is located at:
+# ~/.config/wal/templates/colors-kitty.conf
+include ./colors-kitty.conf
