@@ -14,8 +14,7 @@ bold_italic_font auto
 font_size        12.0
 
 
-enable_audio_bell = fals
-enable_audio_bell = falsee
+enable_audio_bell = false
 # ----------------------------------------------------------------------------
 # Scrollback
 # ----------------------------------------------------------------------------
@@ -29,11 +28,7 @@ initial_window_width  640
 initial_window_height 400
 enabled_layouts *
 
-# ----------------------------------------------------------------------------
-# Colors & Theming
-# ----------------------------------------------------------------------------
-# Colors are managed by pywal.
-# The generated color file is included below.
-# The template for this file is located at:
-# ~/.config/wal/templates/colors-kitty.conf
-include ./colors-kitty.conf
+# BEGIN_KITTY_THEME
+# Catppuccin-Macchiato
+include current-theme.conf
+# END_KITTY_THEME
