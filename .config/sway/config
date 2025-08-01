@@ -2,9 +2,6 @@
 #
 # For a complete reference, see `man 5 sway`.
 
-# Include colors from pywal
-#include "$HOME/.cache/wal/colors-sway"
-
 # -----------------------------------------------------------------------------
 # Variables
 # -----------------------------------------------------------------------------
@@ -46,7 +43,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg /usr/share/backgrounds/default.jxl fill
+output * bg /home/v202009820/Documents/Current/background.jpg fill
 #
 # -----------------------------------------------------------------------------
 # Window & Layout Settings
