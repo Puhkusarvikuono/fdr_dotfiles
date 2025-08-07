@@ -16,7 +16,6 @@ set $right l
 
 # Application shortcuts
 set $term kitty
-set $menu wmenu-run
 set $browser firefox
 
 # -----------------------------------------------------------------------------
@@ -107,7 +106,7 @@ bindsym $mod+q kill
 bindsym $mod+w exec ~/.scripts/wallpaper_changer.sh
 
 # Application launcher
-#bindsym $mod+d exec $menu
+bindsym $mod+d exec $menu
 
 # Reload sway config
 bindsym $mod+Shift+c reload
