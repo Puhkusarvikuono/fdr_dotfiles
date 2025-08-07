@@ -42,7 +42,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
-output * bg /home/v202009820/Documents/Current/background.jpg fill
+output * bg ~/Documents/Current/background.jpg fill
 #
 # -----------------------------------------------------------------------------
 # Window & Layout Settings
@@ -66,7 +66,8 @@ smart_borders on
 #client.background        $background
 
 # Focus on new windows
-focus new
+focus follows mouse
+focus_follows_mouse yes
 # Center mouse on new window
 mouse_warping container
 
@@ -116,7 +117,7 @@ bindsym $mod+Shift+m exec swaynag -t warning -m 'You pressed the exit shortcut. 
 
 # --- Application Shortcuts
 bindsym $mod+b exec $browser
-bindsym $mod+Shift+b exec brave --password-store=basic
+bindsym $mod+Shift+b exec brave-browser --password-store=basic
 #bindsym $mod+Space exec ~/.scripts/spotify_search.sh
 
 # --- System Actions
