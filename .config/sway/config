@@ -103,6 +103,9 @@ bindsym $mod+x exec $term
 # Kill focused window
 bindsym $mod+q kill
 
+# Wallpaper changer
+bindsym $mod+w exec ~/.scripts/wallpaper_changer.sh
+
 # Application launcher
 #bindsym $mod+d exec $menu
 
@@ -116,11 +119,10 @@ bindsym $mod+Shift+m exec swaynag -t warning -m 'You pressed the exit shortcut. 
 bindsym $mod+b exec $browser
 bindsym $mod+Shift+b exec brave --password-store=basic
 #bindsym $mod+Space exec ~/.scripts/spotify_search.sh
-#bindsym $mod+W exec ~/.scripts/wallpaper_changer.sh
 
 # --- System Actions
 # Power menu
-#bindsym $mod+Shift+q exec ~/.scripts/dmenu_sys.sh
+bindsym $mod+Shift+q exec ~/.scripts/dmenu_sys.sh
 
 # Lock screen and mute audio
 bindsym $mod+Return exec pactl set-sink-mute @DEFAULT_SINK@ 1 && swaylock
