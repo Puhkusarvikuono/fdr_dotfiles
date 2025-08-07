@@ -26,7 +26,7 @@ set $browser firefox
 # `exec_always` ensures they are restarted if they crash.
 #exec_always dunst                                 # Notification daemon
 #exec_always blueman-applet                        # Bluetooth applet
-#exec_always hypridle                              # Idle daemon
+#exec_always swayidle                              # Idle daemon
 #exec_always spotify_player -d                     # Spotify daemon
 #exec_always /usr/lib/polkit-kde-authentication-agent-1 # Polkit agent
 
@@ -74,8 +74,10 @@ mouse_warping container
 # -----------------------------------------------------------------------------
 # Idle & Power Management
 # -----------------------------------------------------------------------------
-# This is handled by `hypridle`. See ~/.config/hypr/hypridle.conf
-
+ exec swayidle -w \
+          timeout 300 'swaylock -f -c 000000' \
+          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+          before-sleep 'swaylock -f -c 000000'
 # -----------------------------------------------------------------------------
 # Input Devices
 # -----------------------------------------------------------------------------
@@ -121,7 +123,7 @@ bindsym $mod+Shift+b exec brave --password-store=basic
 #bindsym $mod+Shift+q exec ~/.scripts/dmenu_sys.sh
 
 # Lock screen and mute audio
-bindsym $mod+Return exec pactl set-sink-mute @DEFAULT_SINK@ 1 && hyprlock
+bindsym $mod+Return exec pactl set-sink-mute @DEFAULT_SINK@ 1 && swaylock
 
 # Screenshots
 #bindsym Print exec hyprshot -m window
